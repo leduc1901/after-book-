@@ -1,0 +1,22 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.label-css{
+    width: 100%;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.none {
+    display: none;
+  }
+  
+  .image-hover{
+    &:hover {
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    cursor: pointer;
+  }
+  
+  

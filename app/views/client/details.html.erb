@@ -1,0 +1,105 @@
+<%= render "client/header" %>
+<!--	End Header	-->
+
+<!--	Body	-->
+<div id="body">
+	<div class="container">
+    	<%= render "client/categories" %>
+        <div class="row">
+        	<div id="main" class="col-lg-8 col-md-12 col-sm-12">
+            	
+                <!--	End Slider	-->
+                
+                <!--	List Product	-->
+                <div id="product">
+                	<div id="product-head" class="row">
+                    	<div id="product-img" class="col-lg-6 col-md-6 col-sm-12">
+                        	<%= image_tag @product.prd_img %>
+                        </div>
+                        <div id="product-details" class="col-lg-6 col-md-6 col-sm-12">
+                        	<h1><%= @product.prd_name %></h1>
+                            <ul>
+                            	<li><span>Bảo hành:</span> 12 Tháng</li>
+                                <li><span>Đi kèm:</span> <%= @product.prd_accessories %></li>
+                                <li><span>Tình trạng:</span> Máy Mới 100%</li>
+                                <li><span>Khuyến Mại:</span> Dán Màn Hình 3 lớp</li>
+                                <li id="price">Giá Bán (chưa bao gồm VAT)</li>
+                                <li id="price-number"><%= @product.prd_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>đ</li>
+                                <li id="status"><%= @product.prd_status == true ? "Còn Hàng" : "Hết Hàng" %></li>
+                            </ul>
+                            
+                            <%= form_for @order_item , remote:true do |f| %>
+                                <%= f.hidden_field :product_id , :value => @product.id %>
+                                <%= f.hidden_field :quantity , :value => 1 , :min => 1 %>
+                                <%= f.submit "Mua Ngay" , class:"btn btn-danger" %>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div id="product-body" class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h3>Đánh giá về <%= @product.prd_name %></h3>
+                            <p>
+                                <%= @product.prd_details %>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    
+                    <!--	Comment	-->
+                    <div id="comment" class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h3>Bình luận sản phẩm</h3>
+                            <% flash.each do |message_type, message| %>
+                                    <div class="alert alert-<%= message_type %>"><%= message %></div>
+                                <% end %>
+                            <%= form_for @comment do |f| %>
+                                <%= render 'shared/comment_error'%>
+                                <%= f.label :product_id, @product.id , class: "hidden-shit"%>
+                                <%= f.number_field :product_id , :value => @product.id , class: "hidden-shit"  %>
+                                <%= f.label :name %>
+                                <%= f.text_field :name, class: 'form-control' %>
+
+                                <%= f.label :mail %>
+                                <%= f.email_field :mail, class: 'form-control' %>
+
+                                <%= f.label :details %>
+                                <%= f.text_field :details, class: 'form-control' %>
+
+                                
+                                <%= f.submit "Gửi", class: "btn btn-primary" %>
+                            <% end %>
+                            
+                        </div>
+                    </div>
+                    <!--	End Comment	-->  
+                    
+                    <!--	Comments List	-->
+                    <div id="comments-list" class="row">
+                    	<div class="col-lg-12 col-md-12 col-sm-12">
+                            <% @comments.each do |comment| %>
+                            <div class="comment-item">
+                                <ul>
+                                    <li><b><%= comment.name %></b></li>
+                                    <li><%= comment.created_at %></li>
+                                    <li>
+                                        <p><%= comment.details%></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <% end %>
+
+                        </div>
+                    </div>
+                    <!--	End Comments List	-->
+                </div>
+                <!--	End Product	--> 
+                            
+            </div>
+            
+           <%= render "client/sidebar" %>
+        </div>
+    </div>
+</div>
+<!--	End Body	-->
+
+<%= render "client/footer" %>

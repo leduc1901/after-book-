@@ -1,0 +1,91 @@
+<%= render 'admin/header' %>
+<!-- header -->
+<!-- sidebar left-->
+<%= render 'admin/sidebar'%>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Thêm sản phẩm</h1>
+        </div>
+    </div>
+    <!--/.row-->
+    <div class="row">
+        <div class="col-xs-6 col-md-12 col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Thêm sản phẩm</div>
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom:40px">
+                         
+                                <div class="col-md-8">
+                                    <%= form_for @product , html: { multipart: true } do |f| %>
+                                        <%= render 'shared/products_error' %>
+                                        <%= f.label :category_id, "Danh Mục" , class: "label-css" %>
+                                        <%= f.collection_select(:category_id ,  Category.all , :id , :name , prompt: true ,class: 'form-control') %>
+
+                                        <%= f.label :prd_name , "Tên Sản Phẩm" , class: "label-css"  %>
+                                        <%= f.text_field :prd_name , class: 'form-control' %>
+
+                                        <%= f.label :prd_price, "Giá Sản Phẩm" , class: "label-css"  %>
+                                        <%= f.number_field :prd_price , class: "form-control" , value: @product.prd_price %>
+
+                                        <%= f.label :prd_featured, "Sản Phẩm Có Nổi Bật" , class: "label-css"  %>
+                                        <%= f.select :prd_featured , [["Có" , true] , ["Không" , false]] , class: "form-control" %>
+
+
+                                        <%= f.label :prd_accessories , "Phụ Kiện Sản Phẩm" , class: "label-css"  %>
+                                        <%= f.text_field :prd_accessories , class: 'form-control' %>
+
+                                        <%= f.label :prd_status , "Trạng Thái" , class: "label-css"  %>
+                                        <%= f.select :prd_status , [["Còn Hàng" , true] , ["Hết Hàng" , false]] , class: "form-control"%>
+
+                                        <%= f.label :prd_img, "Ảnh Sản Phẩm" , class: "label-css image-hover" do %> 
+                                            <%= image_tag "no-img.jpg" ,  id:"avatar"%>
+                                        <% end%>
+                                        <%= f.file_field :zzz , accept: 'image/jpeg,image/gif,image/png' , class:"none" , :onChange=>"javascript: changeImg(this);" %>
+                                        <%= f.label :prd_details, "Thông Tin Sản Phẩm" %>
+                                        <%= f.text_area :prd_details  , class: "prd-details" ,:cols => 90, :rows => 10%>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <%= f.submit "Thêm Sản Phẩm" , class:"btn btn-success"%>
+                                                <%= link_to "Hủy Bỏ", products_path , class: "btn btn-danger" %> 
+                                                
+                                            </div>
+                                        </div>
+                                       
+                                    <% end %>  
+                                </div>
+                                
+                    </div>
+                        
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--/.row-->
+</div>
+  
+<script>
+        function changeImg(input){
+		    //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
+		    if(input.files && input.files[0]){
+		        var reader = new FileReader();
+		        //Sự kiện file đã được load vào website
+		        reader.onload = function(e){
+		            //Thay đổi đường dẫn ảnh
+		            $('#avatar').attr('src',e.target.result);
+		        }
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+		$(document).ready(function() {
+		    $('#avatar').click(function(){
+		        $('#img').click();
+		    });
+		});
+
+</script>

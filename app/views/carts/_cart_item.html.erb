@@ -1,0 +1,88 @@
+<%= render "client/header" %>
+<div id="body">
+	<div class="container">
+        <%= render "client/categories" %>
+        <div class="row">
+        	<div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                <div class="main-1">
+                    <%= render "client/slider" %>
+
+
+                    <div id="my-cart">
+                        <div class="row">
+                            <div class="cart-nav-item col-lg-7 col-md-7 col-sm-12">Thông tin sản phẩm</div> 
+                            <div class="cart-nav-item col-lg-2 col-md-2 col-sm-12">Tùy chọn</div> 
+                            <div class="cart-nav-item col-lg-3 col-md-3 col-sm-12">Giá</div>    
+                        </div>  
+                        <% @order_items.each do |item| %>
+                        <div class="cart-item row">
+                            <div class="cart-thumb col-lg-7 col-md-7 col-sm-12">
+                                <%= image_tag item.product.prd_img %>
+                                <h4><%= item.product.prd_name %></h4>
+                            </div> 
+                            <%= form_for item , remote: true do |f| %>
+                            <div class="cart-quantity col-lg-2 col-md-2 col-sm-12">
+                                
+                                    <%= f.hidden_field :product_id, :value => item.product.id %>
+                                    
+                                
+                            </div> 
+                            <div class="cart-price col-lg-3 col-md-3 col-sm-12"><b><%= item.total %>đ</b><%= link_to "Xóa" , order_item_path(item) , method: :delete , remote: true , class: "btn btn-danger"%></div>  
+                            <% end %>  
+                        </div>  
+                        <%end%>
+                        <h1>Tổng Số Tiền : <%= current_order.subtotal  %></h1>
+                                   
+                    </div>
+                    <!--	End Cart	-->
+                    
+                    <!--	Customer Info	-->
+                    <div id="customer">
+                        <form method="post">
+                        <div class="row">
+                            
+                            <div id="customer-name" class="col-lg-4 col-md-4 col-sm-12">
+                                <input placeholder="Họ và tên (bắt buộc)" type="text" name="name" class="form-control" required>
+                            </div>
+                            <div id="customer-phone" class="col-lg-4 col-md-4 col-sm-12">
+                                <input placeholder="Số điện thoại (bắt buộc)" type="text" name="phone" class="form-control" required>
+                            </div>
+                            <div id="customer-mail" class="col-lg-4 col-md-4 col-sm-12">
+                                <input placeholder="Email (bắt buộc)" type="text" name="mail" class="form-control" required>
+                            </div>
+                            <div id="customer-add" class="col-lg-12 col-md-12 col-sm-12">
+                                <input placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)" type="text" name="add" class="form-control" required>
+                            </div>
+                            
+                        </div>
+                        </form>
+                        <div class="row">
+                            <div class="by-now col-lg-6 col-md-6 col-sm-12">
+                                <a href="#">
+                                    <b>Mua ngay</b>
+                                    <span>Giao hàng tận nơi siêu tốc</span>
+                                </a>
+                            </div>
+                            <div class="by-now col-lg-6 col-md-6 col-sm-12">
+                                <a href="#">
+                                    <b>Trả góp Online</b>
+                                    <span>Vui lòng call (+84) 0988 550 553</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <!--	End Feature Product	-->
+                
+                
+                </div>
+                
+
+                <%= render "client/sidebar" %>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<%= render "client/footer" %>

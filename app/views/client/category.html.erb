@@ -1,0 +1,36 @@
+<%= render "client/header" %>
+<div id="body">
+	<div class="container">
+        <%= render "client/categories" %>
+        <div class="row">
+        	<div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                <div class="main-1">
+                    <%= render "client/slider" %>
+
+
+                    <h3><%= @category.name %>( có <%= @products.length%> sản phẩm )</h3>
+                <div class="products">
+                    <% @products.each do |product| %>
+                    <div class="product-item ">
+                        <a href="#"><%= image_tag product.prd_img %></a>
+                        <h4><%= link_to product.prd_name , details_path(product.id) %></h4>
+                        <p>Giá Bán: <span><%= product.prd_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>d</span></p>
+                    </div>
+                       
+                    <%end%>
+                </div>
+                <!--	End Feature Product	-->
+                
+                
+                </div>
+                
+
+                <%= render "client/sidebar" %>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<%= render "client/footer" %>

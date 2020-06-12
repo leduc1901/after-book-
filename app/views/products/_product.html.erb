@@ -1,0 +1,23 @@
+<tr>
+    <td><%=product.id%></td>
+    <td>
+        <div class="row">
+            <div class="col-md-3"><%= image_tag(product.prd_img , size:"200x300")%></div>
+            <div class="col-md-9">
+                <p>Tên sản phẩm :<%=product.prd_name%></p>
+            </div>
+        </div>
+    </td>
+    <td><%=product.prd_price%></td>
+    <td>
+        
+            <a class="btn <%= product.prd_status == true ? "btn-primary" : "btn-danger"  %>" href="#" role="button"><%=product.prd_status == true ? "Còn Hàng" : "Hết Hàng" %> </a>
+        
+    </td>
+    <td><%= product.category.name%></td>
+    <td>
+        <%= link_to edit_product_path(product) , :class => "btn btn-warning" do %><i class="fa fa-pencil" aria-hidden="true">Sửa</i><% end%>
+        
+        <a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+    </td>
+</tr>

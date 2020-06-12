@@ -1,0 +1,52 @@
+<%= render "client/header" %>
+<div id="body">
+	<div class="container">
+        <%= render "client/categories" %>
+        <div class="row">
+        	<div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                <div class="main-1">
+                    <%= render "client/slider" %>
+
+
+                    <h3>Sản phẩm nổi bật</h3>
+                    <div class="products">
+                        <% @products1.each do |product1| %>
+                        <div class="product-item ">
+                            <a href="#"><%= image_tag product1.prd_img %></a>
+                            <h4><%= link_to product1.prd_name , details_path(product1.id) %></h4>
+                            <p>Giá Bán: <span><%= product1.prd_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>d</span></p>
+                        </div>
+                        
+                        <%end%>
+                    </div>
+                <!--	End Feature Product	-->
+                
+                    <h3>Sản phẩm mới</h3>
+                <!--	Latest Product	-->
+                    <div class="products">
+                    
+                            <% @products2.each do |product2| %>
+
+                                <div class="product-item ">
+                                    <a href="#"><%= image_tag product2.prd_img %></a>
+                                    <h4><%= link_to product2.prd_name , root_url %></h4>
+                                    <p>Giá Bán: <span><%= product2.prd_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse  %>d</span></p>
+                                </div>
+                                
+                            <%end%>
+                        
+                        
+                    </div>
+                    
+                </div>
+                
+
+                <%= render "client/sidebar" %>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<%= render "client/footer" %>

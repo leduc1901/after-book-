@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cat_id: 1
+  prd_name: MyString
+  prd_img: MyString
+  prd_price: 1
+  prd_accessories: MyString
+  prd_featured: false
+  prd_status: false
+  prd_details: MyText
+
+two:
+  cat_id: 1
+  prd_name: MyString
+  prd_img: MyString
+  prd_price: 1
+  prd_accessories: MyString
+  prd_featured: false
+  prd_status: false
+  prd_details: MyText

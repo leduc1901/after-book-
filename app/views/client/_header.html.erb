@@ -1,0 +1,22 @@
+<div id="header">
+	<div class="container">
+    	<div class="row">
+        	<div id="logo" class="col-lg-3 col-md-3 col-sm-12">
+            	<h1><%=link_to root_url do %> <%= image_tag "logo.png" %> <%end%> </h1>
+            </div>
+            <div id="search" class="col-lg-6 col-md-6 col-sm-12">
+                <%= form_tag(search_path) do %>
+                 <%= search_field_tag :search , params[:search] , placeholder: "Search" %>
+                 <%= button_tag "Tìm Kiếm", :class => 'btn btn-danger' ,:name => nil%>  
+              <% end %>
+            </div>
+            <div id="cart" class="col-lg-3 col-md-3 col-sm-12">
+                <%= render 'carts/cart' %>
+            </div>
+        </div>
+    </div>
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#menu">
+    	<span class="navbar-toggler-icon"></span>
+    </button>
+</div>

@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <nav>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul>
+                    <% @categories.each do |category| %>
+                        <li class="menu-item"><%= link_to category.name , category_path(category.id) %></li>
+                    <% end %>
+                    
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

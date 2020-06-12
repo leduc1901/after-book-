@@ -1,0 +1,12 @@
+<tr>
+    <td> <%= user.id %></td>
+    <td> <%= user.email %></td>
+    <td><%=  user.name %></td>
+    <td><%= user.admin ? "Yes" : "No"%> </td>
+    <td>
+        <%=  link_to "Sửa"  ,edit_user_path(user) , class: "btn btn-warning"  %>
+        <% if current_user.admin? %>
+            | <%= link_to "Xóa", user, method: :delete, data: { confirm: "You sure?" } , class: "btn btn-danger" %>
+        <% end %>
+    </td>   
+</tr>
