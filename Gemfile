@@ -13,7 +13,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem "font-awesome-rails"
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -37,7 +37,13 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'sqlite3', '~> 1.4' 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :production do
+  gem 'pg',             '0.17.1'
+  gem 'rails_12factor', '0.0.2'
 end
 
 group :development do

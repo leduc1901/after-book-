@@ -1,1 +1,2 @@
-<%= link_to "Giỏ Hàng : #{current_order.order_items.size}" , cart_path%>
+
+<h5 class="cart-show" ><%= link_to "Giỏ Hàng : " , cart_path%><%= "#{current_order.order_items.size}"%></h5>

@@ -24,8 +24,7 @@ class ClientController < ApplicationController
     def comment 
         @categories = Category.all
 
-       
-
+        @order_item = current_order.order_items.new
         @comment = Comment.new(comment_params)
         @product =  Product.find(@comment.product_id)
         @comments = Comment.where(:product_id => @comment.product_id)
